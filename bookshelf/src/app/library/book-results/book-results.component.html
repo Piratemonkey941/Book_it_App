@@ -1,0 +1,18 @@
+<div class="row mb-3" *ngFor="let book of allBooks">
+  <div class="col-md-12">
+    <a href="#" class="list-group-item clearfix">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ book.title }}</h5>
+          <p class="card-text">{{ book.genre }}</p>
+
+          <img
+          src="{{ book.coverImagePath }}"
+          alt="{{ book.title }}"
+          class="img-responsive rounded"
+          style="max-height: 50px"
+        />
+        </div>
+
+  </div>
+
