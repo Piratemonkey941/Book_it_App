@@ -8,7 +8,8 @@ import { BookListComponent } from './bookshelf/book-list/book-list.component';
 import { BookDetailsComponent } from './bookshelf/book-details/book-details.component';
 import { BookResultsComponent } from './library/book-results/book-results.component';
 import { BookSearchComponent } from './library/book-search/book-search.component';
-import { NavigationComponent } from './shared/navigation/navigation.component';
+// import { NavigationComponent } from './shared/navigation/navigation.component';
+import { HeaderComponent } from './header/header.component';
 
 
 // import {Book} from './shared/book/book.component'
@@ -22,7 +23,8 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
     BookDetailsComponent,
     BookResultsComponent,
     BookSearchComponent,
-    NavigationComponent,
+    // NavigationComponent,
+    HeaderComponent,
 
   ],
   imports: [

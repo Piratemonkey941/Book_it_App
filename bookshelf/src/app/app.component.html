@@ -1,19 +1,12 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <!-- <h1>BookIt</h1> -->
-    </div>
-  </div>
-</div>
 
 
+<app-header (currentPage)="onDisplayPage($event)"></app-header>
 <div class="container">
-  <app-navigation (currentPage)="onNavigatePage($event)"></app-navigation>
   <div class="row">
-    <div class="col-md-10 mx-auto">
-      <app-bookshelf *ngIf="pageDisplay === 'bookshelf'"></app-bookshelf>
+    <div class="col-10">
+      <app-bookshelf *ngIf="showPage === 'bookshelf'"></app-bookshelf>
       <hr />
-      <app-library *ngIf="pageDisplay === 'library'"></app-library>
+      <app-library *ngIf="showPage === 'library'"></app-library>
     </div>
   </div>
 </div>
