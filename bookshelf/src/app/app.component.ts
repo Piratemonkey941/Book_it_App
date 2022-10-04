@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bookshelf';
+  pageDisplayed = "bookshelf"
+
+  onNavigatePage(page: string) {
+
+    this.pageDisplay = page
+  }
 }
+
+
+
+
+
+
+
+
+
+// ngModel is two way binding
