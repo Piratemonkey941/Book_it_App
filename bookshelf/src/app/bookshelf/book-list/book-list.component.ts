@@ -1,6 +1,6 @@
-import { Component, OnInit, Import } from '@angular/core';
-import { Book } from 'src/app/shared/book/book.component';
-import { BookResultsComponent} from 'src/app/library/book-results/book-results.component'
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { BookComponent } from 'src/app/shared/book/book.component';
+import { BookshelfComponent } from '../bookshelf.component';
 
 @Component({
   selector: 'app-book-list',
@@ -9,18 +9,37 @@ import { BookResultsComponent} from 'src/app/library/book-results/book-results.c
 })
 export class BookListComponent implements OnInit {
 
+  @Output() currentSelectedBook = new EventEmitter<BookComponent>();
+
+
+  handleBookSelected(book: BookComponent) {
+    // console.log('BOOK:', book);
+    this.currentSelectedBook.emit(book);
+  }
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
 
-  myBooks: Book[] = [
-    new Book(
-        'Book of Testing',
-        'Will Wilder',
-        'Mystery',
-        'https://source.unsplash.com/50x50/?mystery,book'
-    )
+
+//   (method) BookListComponent.handleBookSelected(book: BookComponent,
+//     { this, currentSelectedBook, emit }: {
+//     this: any;
+//     currentSelectedBook: any;
+//     emit: any;
+// }): any
+
+
+
+   myBooks: BookComponent[] = [
+    new BookComponent(
+ )
 ];
 }
+
+// 'Book of Testing',
+// 'Will Wilder',
+// 'Mystery',
+// 'https://source.unsplash.com/50x50/?mystery,book'

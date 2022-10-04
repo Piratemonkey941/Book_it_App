@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
   }
 
   onSelectPage(page: string) {
-    this.currentPage.emit(page: string)
+    // this.currentPage.emit(page: string)
     // console.log("NAV:", page);
     this.currentPage.emit(page);
   }
