@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BookshelfService } from 'src/app/bookshelf/bookshelf.service';
 import { Book } from 'src/app/shared/book/book.model';
+import { LibraryService } from '../library.service';
 
 @Component({
   selector: 'app-book-results',
@@ -8,27 +10,23 @@ import { Book } from 'src/app/shared/book/book.model';
 })
 export class BookResultsComponent implements OnInit {
 
+  allBooks: Book[] = []
+
+  constructor( private bookshelfService: BookshelfService,
+              private libraryService: LibraryService) {}
+
+  ngOnInit(): void {
+    this.allBooks = this.libraryService.getBooks();
+  }
+
+  onSaveBook(book:Book) {
+    return this.bookshelfService.saveBook(book);
+  }
+
+  }
 
 
-  allBooks: Book[] = [
-    new Book(
-        'Book of Testing',
-        'Will Wilder',
-        'https://source.unsplash.com/50x50/?mystery,book',
-        'Mystery'
-    ),
-    new Book(
-        'Children of Time',
-        'Adrian Tchikovski',
-        'https://m.media-amazon.com/images/I/51tuexbxdIL._SL500_.jpg',
-        'SciFi'
-    ),
 
-];
 
-constructor() { }
 
-ngOnInit(): void {
-}
 
-}

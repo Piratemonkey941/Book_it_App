@@ -10,6 +10,7 @@ import { BookResultsComponent } from './library/book-results/book-results.compon
 import { BookSearchComponent } from './library/book-search/book-search.component';
 // import { NavigationComponent } from './shared/navigation/navigation.component';
 import { HeaderComponent } from './header/header.component';
+import { DropdownDirective } from './shared/directives/dropdown.directive';
 
 
 // import {Book} from './shared/book/book.component'
@@ -25,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
     BookSearchComponent,
     // NavigationComponent,
     HeaderComponent,
+    DropdownDirective,
 
   ],
   imports: [

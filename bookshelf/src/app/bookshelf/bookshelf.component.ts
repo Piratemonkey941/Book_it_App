@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { BookComponent } from '../shared/book/book.component';
+// import { BookComponent } from '../shared/book/book.component';
+import { BookshelfService } from './bookshelf.service';
+import { Book } from '../shared/book/book.model';
 
 @Component({
   selector: 'app-bookshelf',
@@ -8,25 +10,33 @@ import { BookComponent } from '../shared/book/book.component';
 })
 export class BookshelfComponent implements OnInit {
 
-  selectedBook: BookComponent ;
+  selectedBook: Book = new Book ( '','','','');
 
-  myBooks: BookComponent[] = [
-    new BookComponent(
-  )
-];
+  constructor(private bookshelfService: BookshelfService) { }
 
-@Output() currentSelectedBook = new EventEmitter<BookComponent>();
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
 
-  handleBookSelected(book: BookComponent){
-    this.currentSelectedBook.emit(book)
-  }
+ngOnInit(): void {
+  // Subscribe to the bookshelfService to get all the global updates inside this component
+  this.bookshelfService.bookSelected.subscribe((book: Book) => this.selectedBook = book)
 
+  };
 }
+
+
+//   myBooks: BookComponent[] = [
+//     new BookComponent(
+//   )
+// ];
+
+// @Output() currentSelectedBook = new EventEmitter<BookComponent>();
+
+  // handleBookSelected(book: BookComponent){
+  //   this.currentSelectedBook.emit(book)
+  // }
+
+
 
 // 'Book of Testing',
 // 'Will Wilder',

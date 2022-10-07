@@ -1,13 +1,13 @@
-<div class="row mb-3" >
-  <div class="col-md-12">
-
-    <app-book
-    *ngFor="let bookEl of myBooks"
-    [book]="bookEl"
-    (bookSelected)="handleBookSelected(bookEl)">
-
-    </app-book>
-
+<div class="row mb-3">
+  <div class="col-md-12" *ngFor="let bookElement of myBooks; let i = index">
+    <app-book [book]="bookElement"></app-book>
+    <button
+      class="float-right"
+      style="border: none; font-size: 16px"
+      (click)="onRemoveBook(i)"
+    >
+      &minus;
+    </button>
   </div>
 </div>
 
@@ -16,8 +16,10 @@
 
 
 
+<!--
+  (bookSelected)="handleBookSelected(bookEl)"
 
-<!-- <div class="float-left">
+  <div class="float-left">
   <h4 class="list-group-item-heading">{{ book.title }}</h4>
   <p class="list-group-item-text mb-0">{{ book.genre }}</p>
 </div>
