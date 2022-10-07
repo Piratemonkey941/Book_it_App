@@ -31,7 +31,26 @@ bookListChanged = new EventEmitter<Book[]>();
       "Lex Pryor",
       "Non-Fiction",
       "https://source.unsplash.com/50x50/?serious,book"
-    )
+    ),
+    new Book(
+      'Book of Testing',
+      'James Woods',
+      "Sci-Fi",
+      'http://placekitten.com/g/400'
+    ),
+    new Book(
+      'Book of Kittens',
+      'Kitten Woods',
+      "Kats",
+      'http://placekitten.com/g/300'
+    ),
+    new Book(
+      'More Cats',
+      'James Woods',
+      "Space Cats",
+      'http://placekitten.com/g/200'
+    ),
+
   ];
 
   getBooks() {

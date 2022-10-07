@@ -9,15 +9,15 @@ import { LibraryService } from '../library.service';
   styleUrls: ['./book-results.component.css']
 })
 export class BookResultsComponent implements OnInit {
-
   allBooks: Book[] = []
 
   constructor( private bookshelfService: BookshelfService,
               private libraryService: LibraryService) {}
 
   ngOnInit(): void {
-    this.allBooks = this.libraryService.getBooks();
-  }
+                this.allBooks = this.libraryService.getBooks();
+              }
+
 
   onSaveBook(book:Book) {
     return this.bookshelfService.saveBook(book);

@@ -9,19 +9,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   collapsed: boolean = true;
   show: boolean = false;
-  @Output() displayPage = new EventEmitter<string>();
+
+  @Output() currentPage = new EventEmitter<string>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  showBookshelf() {
-    this.displayPage.emit('bookshelf');
-    console.log('Bookshelf');
+  onSelectPage(page: string) {
+    this.currentPage.emit(page)
   }
 
-  showLibrary() {
-    this.displayPage.emit('library');
-    console.log('Library');
-  }
 }
+

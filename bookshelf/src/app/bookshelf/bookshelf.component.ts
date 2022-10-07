@@ -9,20 +9,20 @@ import { Book } from '../shared/book/book.model';
   styleUrls: ['./bookshelf.component.css']
 })
 export class BookshelfComponent implements OnInit {
-
   selectedBook: Book = new Book ( '','','','');
 
   constructor(private bookshelfService: BookshelfService) { }
 
+  ngOnInit(): void {
+    // Subscribe to the bookshelfService to get all the global updates inside this component
+    this.bookshelfService.bookSelected.subscribe((book: Book) => this.selectedBook = book)
+
+    };
+  }
 
 
 
-ngOnInit(): void {
-  // Subscribe to the bookshelfService to get all the global updates inside this component
-  this.bookshelfService.bookSelected.subscribe((book: Book) => this.selectedBook = book)
 
-  };
-}
 
 
 //   myBooks: BookComponent[] = [

@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { BookComponent } from 'src/app/shared/book/book.component';
 import { Book } from 'src/app/shared/book/book.model';
-import { BookshelfComponent } from '../bookshelf.component';
 import { BookshelfService } from '../bookshelf.service';
 
+// import { BookComponent } from 'src/app/shared/book/book.component';
+// import { BookshelfComponent } from '../bookshelf.component';
 
 @Component({
   selector: 'app-book-list',
@@ -11,31 +11,22 @@ import { BookshelfService } from '../bookshelf.service';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-
-  @Input() book:Book;
   myBooks: Book[] = [];
 
-  @Output() currentSelectedBook = new EventEmitter<BookComponent>();
-
-
-
+  @Output() currentSelectedBook = new EventEmitter<Book>();
 
   constructor(private bookshelfService: BookshelfService) { }
 
   ngOnInit(): void {
-      // Use the Service to set local "myBooks" array to Service/Global "myBooks" array
-      this.myBooks = this.bookshelfService.getBooks();
-      // Listen for changes on the global "myBooks" array and update the local version
-      this.bookshelfService.bookListChanged.subscribe((books: Book[]) => {
-        this.myBooks = books;
-      });
-  }
+    this.myBooks = this.bookshelfService.getBooks();
+    this.bookshelfService.bookListChanged.subscribe((books: Book[]) => {this.myBooks = books;
+    });
+}
 
+onRemoveBook(idx: number): void {
+  this.bookshelfService.removeBook(idx);
 
-  onRemoveBook(idx: number): void {
-    this.bookshelfService.removeBook(idx);
-
-  }
+}
 
 }
 
@@ -44,6 +35,15 @@ export class BookListComponent implements OnInit {
 
 
 
+
+
+
+
+
+
+
+
+// @Input() book:Book;
 //    myBooks: BookComponent[] = [
 //     new BookComponent(
 //  )

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BookComponent } from'src/app/shared/book/book.component'
+import { Book } from 'src/app/shared/book/book.model';
 
 @Component({
   selector: 'app-book-details',
@@ -8,7 +8,7 @@ import { BookComponent } from'src/app/shared/book/book.component'
 })
 export class BookDetailsComponent implements OnInit {
 
-  @Input() book: BookComponent ;
+  @Input() book: Book = new Book('','','','') ;
 
   constructor() { }
 

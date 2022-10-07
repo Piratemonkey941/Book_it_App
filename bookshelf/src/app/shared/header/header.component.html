@@ -8,23 +8,22 @@
     aria-label="Toggle navigation"
     aria-controls="navbarToggler"
     aria-expanded="false"
-    (click)="collapsed = !collapsed"
-  >
+    (click)="collapsed = !collapsed"  >
     <span class="navbar-toggler-icon"></span>
   </button>
+
 
   <div
     class="collapse navbar-collapse"
     id="navbarToggler"
     [class.collapse]="collapsed"
-    (window:resize)="collapsed = true"
-  >
+    (window:resize)="collapsed = true">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" (click)="showBookshelf()">Bookshelf</a>
+        <a class="nav-link" (click)="onSelectPage('bookshelf')">Bookshelf</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showLibrary()">Library</a>
+        <a class="nav-link" (click)="onSelectPage('library')">Library</a>
       </li>
     </ul>
     <ul class="navbar-nav">

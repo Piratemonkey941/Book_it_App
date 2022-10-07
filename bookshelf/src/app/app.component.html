@@ -1,12 +1,13 @@
 
 
-<app-header (currentPage)="onDisplayPage($event)"></app-header>
+<app-header (currentPage)="onNavigatePage($event)"></app-header>
 <div class="container">
   <div class="row">
     <div class="col-10">
-      <app-bookshelf *ngIf="showPage === 'bookshelf'"></app-bookshelf>
+      <app-bookshelf *ngIf="pageDisplayed === 'bookshelf'"></app-bookshelf>
       <hr />
-      <app-library *ngIf="showPage === 'library'"></app-library>
+      <app-library *ngIf="pageDisplayed === 'library'"></app-library>
     </div>
   </div>
 </div>
+
