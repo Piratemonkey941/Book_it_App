@@ -4,14 +4,17 @@
     <h1>My Saved Books</h1>
     <app-book-list></app-book-list>
   </div>
+  <router-outlet></router-outlet>
 
-
-  <div class="col-md-6">
-      <app-book-details
-        *ngIf="selectedBook; else infoText"
-        [book]="selectedBook"
-      ></app-book-details>
-      <ng-template #infoText><p>Please select a book!</p>
-    </ng-template>
-  </div>
 </div>
+
+
+<!--
+<div class="col-md-6">
+  <router-outlet
+    *ngIf="selectedBook; else infoText"
+    [book]="selectedBook"
+  ></router-outlet>
+  <router-outlet #infoText><p>Please select a book!</p>
+</router-outlet>
+</div> -->

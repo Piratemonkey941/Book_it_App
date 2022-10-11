@@ -10,15 +10,18 @@ export class HeaderComponent implements OnInit {
   collapsed: boolean = true;
   show: boolean = false;
 
-  @Output() currentPage = new EventEmitter<string>();
+
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onSelectPage(page: string) {
-    this.currentPage.emit(page)
-  }
+
 
 }
 
+
+// @Output() currentPage = new EventEmitter<string>();
+// onSelectPage(page: string) {
+//   this.currentPage.emit(page)
+// }

@@ -10,9 +10,6 @@ export class AppComponent {
   pageDisplayed: string = 'bookshelf';
   title = 'book-it';
 
-  onNavigatePage(page: string) {
-    this.pageDisplayed = page;
-  }
 }
 
 
@@ -32,3 +29,7 @@ export class AppComponent {
 
 
 // ngModel is two way binding
+// onNavigatePage(page: string) {
+//   this.pageDisplayed = page;
+// }
+// }

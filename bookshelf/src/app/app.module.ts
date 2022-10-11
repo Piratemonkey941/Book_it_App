@@ -11,6 +11,10 @@ import { BookSearchComponent } from './library/book-search/book-search.component
 import { HeaderComponent } from './shared/header/header.component';
 import { BookComponent } from './shared/book/book.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
+import { BookshelfHomeComponent } from './bookshelf/bookshelf-home/bookshelf-home.component';
+import { BookshelfEditorComponent } from './bookshelf/bookshelf-editor/bookshelf-editor.component';
+
 
 
 
@@ -26,10 +30,16 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     BookComponent,
     HeaderComponent,
     DropdownDirective,
+    BookshelfHomeComponent,
+    BookshelfEditorComponent,
+
+
 
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+
 
   ],
   providers: [],

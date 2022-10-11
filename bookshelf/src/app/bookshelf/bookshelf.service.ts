@@ -54,6 +54,10 @@ export class BookshelfService {
           return this.myBooks.slice();
         }
 
+        getBook(idx: number) {
+          return this.getBooks()[idx];
+        }
+
     saveBook(book: Book) {
         this.myBooks.push(book)
         this.bookListChanged.emit(this.myBooks.slice())
@@ -61,7 +65,7 @@ export class BookshelfService {
 
     removeBook(idx: number) {
         if (idx !== -1) {
-           
+
             this.myBooks.splice(idx, 1)
             this.bookListChanged.emit(this.myBooks.slice());
         }
