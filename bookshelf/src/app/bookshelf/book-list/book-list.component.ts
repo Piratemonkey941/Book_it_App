@@ -26,6 +26,10 @@ export class BookListComponent implements OnInit {
     });
 }
 
+onBookSelected(i: number) {
+  this.bookshelfService.bookSelected.next(this.myBooks[i])
+}
+
 onRemoveBook(idx: number): void {
   this.bookshelfService.removeBook(idx);
 

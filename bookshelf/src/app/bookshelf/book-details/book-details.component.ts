@@ -37,3 +37,5 @@ export class BookDetailsComponent implements OnInit {
     this.bookshelfService.removeBook(this.idx)
   }
 }
+
+
