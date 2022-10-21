@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable, Input } from "@angular/core";
-import { Book } from "../shared/book/book.model";
 import { Subject } from "rxjs";
+import { Book } from "../shared/book/book.model";
 
 
 @Injectable({
@@ -22,44 +22,21 @@ export class BookshelfService {
         'https://m.media-amazon.com/images/I/51tuexbxdIL._SL500_.jpg',
         'SciFi'
       ),
-      new Book(
-        'Book of Testing',
-        'Will Wilder',
-        'Mystery',
-        'https://source.unsplash.com/50x50/?mystery,book'
-      ),
-      new Book(
-        'Testing Title 2',
-        'Nolan Hovis',
-        'Science',
-        'https://source.unsplash.com/50x50/?science,book'
-      ),
-      new Book(
-        'Fantasy Test',
-        'German Cruz',
-        'Non-Fiction',
-        'https://source.unsplash.com/50x50/?fantasy,book'
-      ),
-      new Book(
-        'Fantasy Test',
-        'Lex Pryor',
-        'Math',
-        'https://source.unsplash.com/50x50/?math,book'
-      ),
+
     ]
 
     bookSelected =  new Subject<Book>();
     bookListChanged = new Subject<Book[]>();
 
-  getBooks() {
-          return this.myBooks.slice();
+    getBooks() {
+      return this.myBooks.slice();
+    }
+
+    getBook(idx: number) {
+          return this.myBooks.slice()[idx]
         }
 
-  getBook(idx: number) {
-          return this.getBooks()[idx];
-        }
-
-    saveBook(book: Book) {
+    addBook(book: Book) {
         this.myBooks.push(book)
         this.bookListChanged.next(this.myBooks.slice())
     }
@@ -72,7 +49,14 @@ export class BookshelfService {
         }
     }
 
+    updateBook(idx: number, newBook: Book){
+      this.myBooks[idx] = newBook
 
+      this.bookListChanged.next(this.getBooks())
+    }
+   
+
+constructor(){}
 }
 
 

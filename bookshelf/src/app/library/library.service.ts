@@ -9,51 +9,30 @@ bookListChanged = new EventEmitter<Book[]>();
 
   private allBooks: Book[] = [
     new Book(
-      "API Book 1",
-      "Will Wilder",
-      "Mystery",
-      "https://source.unsplash.com/50x50/?mystery,book"
-    ),
-    new Book(
-      "API Book 2",
-      "Nolan Hovis",
-      "Non-Fiction",
-      "https://source.unsplash.com/50x50/?serious,book"
-    ),
-    new Book(
-      "API Book 3",
-      "German Cruz",
-      "Mystery",
-      "https://source.unsplash.com/50x50/?mystery,book"
-    ),
-    new Book(
-      "API Book 4",
-      "Lex Pryor",
-      "Non-Fiction",
-      "https://source.unsplash.com/50x50/?serious,book"
+      'The man who died twice',
+      'Richard Osman',
+      'https://m.media-amazon.com/images/I/61Kwfj2pEkL.jpg',
+      'Fiction'
     ),
     new Book(
       'Book of Testing',
-      'James Woods',
-      "Sci-Fi",
-      'http://placekitten.com/g/400'
+      'Will Wilder',
+      'https://source.unsplash.com/50x50/?mystery,book',
+      'Mystery'
     ),
     new Book(
-      'Book of Kittens',
-      'Kitten Woods',
-      "Kats",
-      'http://placekitten.com/g/300'
+      'Children of Time',
+      'Adrian Tchikovski',
+      'https://m.media-amazon.com/images/I/51tuexbxdIL._SL500_.jpg',
+      'SciFi'
     ),
-    new Book(
-      'More Cats',
-      'James Woods',
-      "Space Cats",
-      'http://placekitten.com/g/200'
-    ),
+
+
 
   ];
 
   getBooks() {
     return this.allBooks.slice();
   }
+  constructor() {}
 }

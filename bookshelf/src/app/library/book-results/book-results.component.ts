@@ -15,12 +15,13 @@ export class BookResultsComponent implements OnInit {
               private libraryService: LibraryService) {}
 
   ngOnInit(): void {
-                this.allBooks = this.libraryService.getBooks();
-              }
+    this.allBooks = this.libraryService.getBooks();
+  }
 
 
-  onSaveBook(book:Book) {
-    return this.bookshelfService.saveBook(book);
+
+  onAddBook(book:Book) {
+    return this.bookshelfService.addBook(book);
   }
 
   }

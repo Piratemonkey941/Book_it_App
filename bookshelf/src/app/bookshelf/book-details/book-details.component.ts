@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Book } from 'src/app/shared/book/book.model';
 import {ActivatedRoute, Params, Router } from '@angular/router';
+import { interval } from 'rxjs';
+import { Book } from 'src/app/shared/book/book.model';
 import { BookshelfService} from '../bookshelf.service';
 
 @Component({
@@ -10,23 +11,23 @@ import { BookshelfService} from '../bookshelf.service';
 })
 export class BookDetailsComponent implements OnInit {
 
-  @Input() book: Book = new Book('','','','') ;
-  idx:number = 0
+  @Input()
+  book: Book = new Book('','','','')
+  idx:number;
 
   constructor(
-    private route: ActivatedRoute,
     private bookshelfService: BookshelfService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {
 
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.idx = Number(params['id']);
+      this.idx = +params['id'];
       this.book = this.bookshelfService.getBook(this.idx);
-    })
-
+    });
   }
 
   onEditBook() {
