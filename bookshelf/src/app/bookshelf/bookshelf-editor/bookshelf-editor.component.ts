@@ -52,5 +52,8 @@ export class BookshelfEditorComponent implements OnInit {
           this.bookshelfService.addBook(newBook);
         }
       }
+      onResetForm() {
+        this.router.navigate(["../"], { relativeTo: this.route });
+      }
 
 }
