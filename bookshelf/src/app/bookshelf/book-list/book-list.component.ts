@@ -14,30 +14,27 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class BookListComponent implements OnInit {
   myBooks: Book[] = [];
 
-  @Output() currentSelectedBook = new EventEmitter<Book>();
-
-  constructor(  private bookshelfService: BookshelfService,
-                 private router: Router,
-                 private route: ActivatedRoute) { }
+  constructor(
+    private bookshelfService: BookshelfService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    // Use the Service to set local "myBooks" array to Service/Global "myBooks" array
     this.myBooks = this.bookshelfService.getBooks();
-    this.bookshelfService.bookListChanged.subscribe((books: Book[]) => {this.myBooks = books;
+    // Listen for changes on the global "myBooks" array and update the local version
+    this.bookshelfService.bookListChanged.subscribe((books: Book[]) => {
+      this.myBooks = books;
     });
-}
+  }
 
-onBookSelected(i: number) {
-  this.bookshelfService.bookSelected.next(this.myBooks[i])
+  onRemoveBook(idx) {
+    this.bookshelfService.removeBook(idx);
+  }
+  onNewBook() {
+    this.router.navigate(['new'], { relativeTo: this.route });
 }
-
-onRemoveBook(idx: number): void {
-  this.bookshelfService.removeBook(idx);
-
-}
-onNewBook() {
-  this.router.navigate(['new'], { relativeTo: this.route });
-}
-
 }
 
 

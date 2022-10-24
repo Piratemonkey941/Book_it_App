@@ -1,4 +1,4 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { BookshelfService } from 'src/app/bookshelf/bookshelf.service';
 import { Subscription } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.css']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit, OnDestroy {
 
   private bookChangeSub: Subscription = new Subscription;
 
@@ -17,7 +17,7 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookChangeSub = this.bookshelfService.bookSelected.subscribe((data) =>{
-      console.log(data);
+
       alert(`title: ${data.title}\n author: ${data.author}`)
     })
   }

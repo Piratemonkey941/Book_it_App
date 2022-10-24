@@ -1,10 +1,10 @@
-import { LibraryComponent } from "./library/library.component"
-import { BookshelfComponent } from "./bookshelf/bookshelf.component"
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
-import { BookshelfEditorComponent } from "./bookshelf/bookshelf-editor/bookshelf-editor.component"
 import { BookDetailsComponent } from "./bookshelf/book-details/book-details.component"
+import { BookshelfEditorComponent } from "./bookshelf/bookshelf-editor/bookshelf-editor.component"
 import { BookshelfHomeComponent } from "./bookshelf/bookshelf-home/bookshelf-home.component"
+import { BookshelfComponent } from "./bookshelf/bookshelf.component"
+import { LibraryComponent } from "./library/library.component"
 // import { BookshelfEditorComponent } from "./bookshelf/bookshelf-editor/bookshelf-editor.component"
 
 const appRoutes: Routes = [
@@ -21,17 +21,21 @@ const appRoutes: Routes = [
       // { path: ':id/edit', component: BookshelfEditorComponent },
     ],
   },
-  {  path: "library", component: LibraryComponent}
+  {
+     path: "library",
+     component: LibraryComponent
+  },
+  {
+    path: '',
+    redirectTo: 'bookshelf',
+    pathMatch: 'full'
+  }
 ];
-
-
-
-
 
   @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule]
   })
 
+  export class AppRoutingModule {}
 
-export class AppRoutingModule {}
