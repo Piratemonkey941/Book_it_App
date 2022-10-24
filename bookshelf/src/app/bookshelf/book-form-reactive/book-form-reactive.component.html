@@ -1,0 +1,85 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="onFormSubmit()">
+    <div id="book-data">
+        <div class="form-group">
+            <label  for="title">Title</label>
+            <input
+
+                  type="text"
+                  name="title"
+                  id="title"
+                  class="form-control"
+                  required
+                  formControlName="title">
+
+          <span
+            class="help-block text-danger"
+            *ngIf="!reactiveForm.get('title')?.valid && reactiveForm.get('title').touched"
+            >Please enter a valid title!
+          </span>
+
+          </div>
+        <div class="form-group">
+            <label  for="author">Author</label>
+            <input
+            type="text"
+            name="author"
+            id="author"
+            class="form-control"
+            required
+            formControlName="author"
+           >
+            <span
+
+              class="help-block text-danger"
+              *ngIf="!reactiveForm.get('author')?.valid && reactiveForm.get('author').touched"
+
+              >Please enter a valid email!
+          </span>
+
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <select
+                id="genre"
+                name="genre"
+                class="form-control"
+                required
+                formControlName="genre"
+            >
+            <span
+                class="help-block text-danger"
+                *ngIf="!reactiveForm.get('genre')?.valid && reactiveForm.get('genre').touched"
+                >Please enter a valid genre!
+            </span>
+              <option value="mystery">Mystery</option>
+              <option value="self-help">Self-Help</option>
+              <option value="fantasy">Fantasy</option>
+              <option value="science-fiction">Science Fiction</option>
+              <option value=""></option>
+            </select>
+        </div>
+
+        <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="!reactiveForm.valid">
+            Submit
+         </button>
+
+         <div class="row mt-4" *ngIf="formHasBeenSubmitted">
+          <div class="col-xs-12">
+            <h3>Title: {{ reactiveForm.value.title }}</h3>
+            <h4>Author: {{ reactiveForm.value.author }}</h4>
+            <p>Genre: {{ reactiveForm.value.genre }}</p>
+          </div>
+        </div>
+    </div>
+</form>
+
+<!-- <div class="row mt-4" *ngIf="formHasBeenSubmitted">
+  <div class="col-xs-12">
+    <h3>Title: {{ bookDetails.title }}</h3>
+    <h4>Author: {{ bookDetails.author }}</h4>
+    <p>Genre: {{ bookDetails.genre }}</p>
+  </div>
+</div> -->

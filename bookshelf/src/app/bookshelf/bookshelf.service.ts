@@ -72,6 +72,15 @@ export class BookshelfService {
         }
     }
 
+    addBook(book: Book) {
+      this.myBooks.push(book)
+      this.bookListChanged.next(this.myBooks.slice())
+    }
+
+    updateBook(idx: number, updateBook: Book) {
+      this.myBooks[idx] = updateBook
+      this.bookListChanged.next(this.myBooks.slice())
+    }
 
 }
 

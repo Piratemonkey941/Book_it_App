@@ -15,6 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { BookshelfHomeComponent } from './bookshelf/bookshelf-home/bookshelf-home.component';
 import { BookshelfEditorComponent } from './bookshelf/bookshelf-editor/bookshelf-editor.component';
 import { NotificationComponent } from './shared/notification/notification.component';
+import { BookFormTdComponent } from './bookshelf/book-form-td/book-form-td.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BookFormReactiveComponent } from './bookshelf/book-form-reactive/book-form-reactive.component';
 
 
 
@@ -34,6 +37,9 @@ import { NotificationComponent } from './shared/notification/notification.compon
     BookshelfHomeComponent,
     BookshelfEditorComponent,
     NotificationComponent,
+    BookFormTdComponent,
+    BookFormReactiveComponent,
+
 
 
 
@@ -41,7 +47,8 @@ import { NotificationComponent } from './shared/notification/notification.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    FormsModule,
+    ReactiveFormsModule,
 
   ],
   providers: [],
