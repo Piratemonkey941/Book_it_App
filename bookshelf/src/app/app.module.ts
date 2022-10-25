@@ -8,7 +8,7 @@ import { BookListComponent } from './bookshelf/book-list/book-list.component';
 import { BookDetailsComponent } from './bookshelf/book-details/book-details.component';
 import { BookResultsComponent } from './library/book-results/book-results.component';
 import { BookSearchComponent } from './library/book-search/book-search.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { HeaderComponent } from './header/header.component';
 import { BookComponent } from './shared/book/book.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { BookFormTdComponent } from './bookshelf/book-form-td/book-form-td.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookFormReactiveComponent } from './bookshelf/book-form-reactive/book-form-reactive.component';
+import {HttpClientModule} from '@angular/common/http'
 
 
 
@@ -43,12 +44,15 @@ import { BookFormReactiveComponent } from './bookshelf/book-form-reactive/book-f
 
 
 
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+
 
   ],
   providers: [],
