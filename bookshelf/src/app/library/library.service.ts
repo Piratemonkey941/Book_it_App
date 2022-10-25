@@ -54,7 +54,7 @@ constructor(private http: HttpClient) {}
       const newBook = new Book(
         title,
         author_name ? author_name[0] : '',
-        '',
+        '',  // image goes here
         '',
         0,
         first_publish_year,

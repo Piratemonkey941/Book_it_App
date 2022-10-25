@@ -82,6 +82,12 @@ export class BookshelfService {
       this.bookListChanged.next(this.myBooks.slice())
     }
 
+    setBooks(books: Book[]) {
+      console.log({books})
+      this.myBooks = books
+      this.bookListChanged.next(this.getBooks())
+    }
+
 }
 
 

@@ -1,15 +1,15 @@
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-4">
   <a class="navbar-brand brand" id="brand" href="#">BookIt</a>
   <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarToggler"
-    aria-label="Toggle navigation"
-    aria-controls="navbarToggler"
-    aria-expanded="false"
-    (click)="collapsed = !collapsed"  >
-    <span class="navbar-toggler-icon"></span>
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          aria-label="Toggle navigation"
+          aria-controls="navbarToggler"
+          aria-expanded="false"
+          (click)="collapsed = !collapsed"  >
+      <span class="navbar-toggler-icon"></span>
   </button>
 
 
@@ -51,8 +51,16 @@
           aria-labelledby="navbarDropdownMenuLink"
           [class.show]="show"
         >
-          <a class="dropdown-item" >Save Data</a>
-          <a class="dropdown-item" >Fetch Data</a>
+          <a
+              class="dropdown-item"
+              style="cursor:pointer ;"
+              (click)="onSaveData()">
+            Save Data</a>
+          <a
+              class="dropdown-item"
+              style="cursor:pointer ;"
+              (click)="onFetchData()">
+            Fetch Data</a>
         </div>
       </li>
     </ul>

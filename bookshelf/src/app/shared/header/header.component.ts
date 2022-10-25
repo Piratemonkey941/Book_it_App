@@ -1,5 +1,6 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { HttpService } from '../http/http.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,19 @@ export class HeaderComponent implements OnInit {
 
 
 
-  constructor() {}
+  constructor(
+    private httpService: HttpService
+
+  ) {}
 
   ngOnInit(): void {}
 
-
+ onSaveData(){
+  this.httpService.saveBooksToFirebase()
+ }
+ onFetchData(){
+  this.httpService.fetchBooksFromFirebase()
+ }
 
 }
 
