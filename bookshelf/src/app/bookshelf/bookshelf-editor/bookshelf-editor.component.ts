@@ -45,7 +45,7 @@ export class BookshelfEditorComponent implements OnInit {
       this.bookshelfService.updateBook(this.idx, this.bookDetails)
       this.router.navigate(['bookshelf/'])
     } else {
-      this.bookshelfService.addBook(this.bookDetails)
+      this.bookshelfService.saveBook(this.bookDetails)
     }
 
     this.onResetForm()

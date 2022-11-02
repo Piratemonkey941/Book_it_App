@@ -22,30 +22,7 @@ export class BookshelfService {
         'https://m.media-amazon.com/images/I/51tuexbxdIL._SL500_.jpg',
         'SciFi'
       ),
-      new Book(
-        'Book of Testing',
-        'Will Wilder',
-        'Mystery',
-        'https://source.unsplash.com/50x50/?mystery,book'
-      ),
-      new Book(
-        'Testing Title 2',
-        'Nolan Hovis',
-        'Science',
-        'https://source.unsplash.com/50x50/?science,book'
-      ),
-      new Book(
-        'Fantasy Test',
-        'German Cruz',
-        'Non-Fiction',
-        'https://source.unsplash.com/50x50/?fantasy,book'
-      ),
-      new Book(
-        'Fantasy Test',
-        'Lex Pryor',
-        'Math',
-        'https://source.unsplash.com/50x50/?math,book'
-      ),
+
     ]
 
     bookSelected =  new Subject<Book>();
@@ -72,21 +49,28 @@ export class BookshelfService {
         }
     }
 
-    addBook(book: Book) {
-      this.myBooks.push(book)
-      this.bookListChanged.next(this.myBooks.slice())
-    }
+    // addBook(book: Book) {
+    //   this.myBooks.push(book)
+    //   this.bookListChanged.next(this.myBooks.slice())
+    // }
 
     updateBook(idx: number, updateBook: Book) {
       this.myBooks[idx] = updateBook
       this.bookListChanged.next(this.myBooks.slice())
     }
 
-    setBooks(books: Book[]) {
-      console.log({books})
-      this.myBooks = books
-      this.bookListChanged.next(this.getBooks())
-    }
+    // setBooks(books: Book[]) {
+    //   console.log({books})
+    //   this.myBooks = books
+    //   this.bookListChanged.next(this.getBooks())
+    // }
+
+    setBooks(books: Book[] | []) {
+      console.log('%c  books: ', 'color: red;', books);
+
+      this.myBooks = books || [];
+      this.bookListChanged.next(this.myBooks.slice());
+  }
 
 }
 

@@ -18,7 +18,8 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { BookFormTdComponent } from './bookshelf/book-form-td/book-form-td.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookFormReactiveComponent } from './bookshelf/book-form-reactive/book-form-reactive.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { AuthComponent } from './shared/auth/auth.component'
 
 
 
@@ -40,6 +41,7 @@ import {HttpClientModule} from '@angular/common/http'
     NotificationComponent,
     BookFormTdComponent,
     BookFormReactiveComponent,
+    AuthComponent,
 
 
 

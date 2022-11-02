@@ -24,7 +24,7 @@ export class BookResultsComponent implements OnInit {
 
 
   onSaveBook(book:Book) {
-    return this.bookshelfService.addBook(book);
+    return this.bookshelfService.saveBook(book);
   }
 
   }

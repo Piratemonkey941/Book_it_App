@@ -17,12 +17,7 @@ bookListChanged = new EventEmitter<Book[]>();
 
 constructor(private http: HttpClient) {}
 
-  private allBooks: Book[] = [
-
-
-      ];
-
-
+  private allBooks: Book[] = [ ];
 
   fetchBooks(searchQuery: string) {
 
