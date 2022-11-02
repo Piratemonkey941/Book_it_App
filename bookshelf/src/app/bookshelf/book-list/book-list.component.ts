@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { Book } from 'src/app/shared/book/book.model';
 import { BookshelfService } from '../bookshelf.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { Subscription } from 'rxjs';
 
 // import { BookComponent } from 'src/app/shared/book/book.component';
 // import { BookshelfComponent } from '../bookshelf.component';
@@ -14,7 +13,6 @@ import { Subscription } from 'rxjs';
 })
 export class BookListComponent implements OnInit {
   myBooks: Book[] = [];
-  private bookListSub: Subscription;
 
   constructor(
     private bookshelfService: BookshelfService,
@@ -29,22 +27,6 @@ export class BookListComponent implements OnInit {
     this.bookshelfService.bookListChanged.subscribe((books: Book[]) => {
       this.myBooks = books;
     });
-
-
-
-    // this.bookListSub = this.bookshelfService.bookListChanged.subscribe(
-    //   (book: Book[]) => {
-    //     this.myBooks = book
-    //   }
-    // );
-  }
-    // Listen for changes on the global "myBooks" array and update the local version
-    // this.bookshelfService.bookListChanged.subscribe((books: Book[]) => {
-    //   this.myBooks = books;
-    // });
-
-  ngOnDestroy(): void {
-    this.bookListSub.unsubscribe();
   }
 
   onRemoveBook(idx) {
