@@ -18,8 +18,10 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { BookFormTdComponent } from './bookshelf/book-form-td/book-form-td.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookFormReactiveComponent } from './bookshelf/book-form-reactive/book-form-reactive.component';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './shared/auth/auth.component'
+import { AuthInterceptorService } from './shared/auth/authinterceptorservice.service';
+import { AuthGuard } from './shared/auth/auth-guard/auth-guard.component';
 
 
 
@@ -42,6 +44,7 @@ import { AuthComponent } from './shared/auth/auth.component'
     BookFormTdComponent,
     BookFormReactiveComponent,
     AuthComponent,
+    AuthGuard,
 
 
 
@@ -57,7 +60,13 @@ import { AuthComponent } from './shared/auth/auth.component'
 
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

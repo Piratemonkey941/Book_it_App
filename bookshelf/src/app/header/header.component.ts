@@ -1,19 +1,31 @@
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, OnDestroy } from '@angular/core';
+import { AuthService } from '../shared/auth/auth.service';
+import { HttpService } from '../shared/http/http.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   collapsed: boolean = true;
   show: boolean = false;
-  @Output() displayPage = new EventEmitter<string>();
+  isLoginMode = true;
+  isAuthenticated = false
 
-  constructor() {}
+@Output() displayPage = new EventEmitter<string>();
 
-  ngOnInit(): void {}
+constructor(
+  private httpService: HttpService,
+  private authService: AuthService
+  ) {}
+
+ngOnInit(): void {
+  this.authService.currentUser.subscribe((user) => {
+    this.isAuthenticated = !!user
+  })
+}
 
 showBookshelf(){
   this.displayPage.emit('bookshelf')
@@ -25,6 +37,25 @@ showLibrary(){
   console.log('Library')
 }
 
+onSwitchAuthMode() {
+    this.isLoginMode = !this.isLoginMode;
+}
+
+onSaveData(){
+  this.httpService.saveBooksToFirebase()
+ }
+ onFetchData(){
+  this.httpService.fetchBooksFromFirebase()
+ }
+
+
+ ngOnDestroy(): void {
+  this.authService.currentUser.unsubscribe()
+ }
+
+ onSignOut() {
+  this.authService.signOut();
+}
 
 }
 
