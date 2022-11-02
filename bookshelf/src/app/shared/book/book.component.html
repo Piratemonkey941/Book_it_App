@@ -7,13 +7,25 @@ routerLinkActive="active"
 
   <div class="float-left">
 
-    <h4 class="list-group-item-heading">{{ book.title }}</h4>
-    <p class="list-group-item-text mb-0" *ngIf="book.genre !== ''">{{ book?.genre }}</p>
-    <p class="list-group-item-text mb-0" >{{ book.author }}</p>
-    <p
-    class="list-group-item-text mb-0" *ngIf="book.price !== undefined && book.price> 0">
-    {{ book.price | currency}}</p>
+      <h4 class="list-group-item-heading">
+        {{ book.title }}
+      </h4>
+      <p class="list-group-item-text mb-0" *ngIf="book.genre !== ''">
 
+        {{ book?.genre }}
+      </p>
+      <p class="list-group-item-text mb-0" >
+
+        {{ book.author }}
+      </p>
+      <p
+      class="list-group-item-text mb-0" *ngIf="book.price> 0">
+      {{ book.price | currency}}
+       </p>
+
+      <p class=" list-group-item-text mb-0" ngIf="book.firstPublishYear">
+        {{ book.firstPublishYear}}
+      </p>
 
   </div>
 
@@ -28,3 +40,7 @@ routerLinkActive="active"
 </a>
 
 
+<!-- <p
+class="list-group-item-text mb-0" *ngIf="book.price !== undefined && book.price> 0">
+{{ book.price | currency}}
+ </p> -->

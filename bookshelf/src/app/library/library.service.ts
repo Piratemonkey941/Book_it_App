@@ -24,33 +24,43 @@ constructor(private http: HttpClient) {}
 
 
 
-  fetchBooks(searchQuery: string) {
+  fetchBooks(query: string) {
 
-    const formattedQuery = searchQuery.split(' ').join('+').toLowerCase();
+    const formattedQuery = query
+    .split(' ')
+    .join('+')
+    .toLowerCase();
 
+    // Send HTTP GET Request to the "openLibrary" api endpoint using the tranformed input query
     this.http
       .get(`https://openlibrary.org/search.json?q=${formattedQuery}`)
-    .subscribe((searchResponse) => {
-      console.log('Search Response:', searchResponse);
-      this.allBooks = []
-      this.saveBooks(searchResponse as BooksResponseObject)
+    .subscribe((response) => {
+      console.log('Search Response:', response);
+      // Reset Books Array
+      this.allBooks = [];
+      // Save Books
+      this.saveBooks(response as BooksResponseObject)
     })
   }
 
 
   getBooks() {
+    console.log("this.allBooks:", this.allBooks);
+
     return this.allBooks.slice();
   }
 
 
   saveBooks(books:BooksResponseObject) {
-    this.allBooks = books.docs.map((book) => {
-      //transform response data into book model obj as expected
-
+    // this.allBooks =
+    // Map over all the book results
+    books.docs.map(book => {
+      // Destructure the book results
       console.log({book})
 
       const {title, author_name, first_publish_year, isbn} = book
 
+    // For each book result, create a new book
       const newBook = new Book(
         title,
         author_name ? author_name[0] : '',
@@ -58,16 +68,20 @@ constructor(private http: HttpClient) {}
         '',
         0,
         first_publish_year,
-        isbn
+        isbn ? isbn[0] : ""
 
       );
 
-      console.log({book})
+      // console.log({'newBook:', newBook})
 
-      return(newBook)
+      // return(newBook)
 
-    })
-    this.bookListChanged.next(this.getBooks());
+      // Add it to allBooks array
+      this.allBooks.push(newBook)
+
+    });
+
+    this.bookListChanged.next(this.allBooks.slice());
   }
 
 }

@@ -17,19 +17,21 @@ export class BookSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    onFetchBook(searchQuery: string){
-      this.library.fetchBooks(searchQuery);
-    //   console.log("Fetch Books")
-    //   console.log({searchQuery})
+  onFetchBooks(searchInput: string) {
+    // Turn Search Query into lowercase words with plus sign for spaces
+    const formattedQuery = searchInput.split(' ').join('+').toLowerCase();
 
-    //   const formattedQuery = searchQuery.split(' ').join('+').toLowerCase();
+    // Send HTTP GET Request to the "openLibrary" api endpoint using the tranformed input query
+    this.http
+      .get(`http://openlibrary.org/search.json?q=${formattedQuery}`)
+      .subscribe((searchResults) => {
+        console.log('searchResults', searchResults);
+      });
+  }
 
-    //   this.http
-    //     .get(`https://openlibrary.org/search.json?q=${formattedQuery}`)
-    //   .subscribe((searchResponse) => {
-    //     console.log('Search Response:', searchResponse)
-    //   })
-    // }
-
-    }
+  
 }
+
+      // this.library.fetchBooks(searchQuery);
+    //   console.log("Fetch Books")
+

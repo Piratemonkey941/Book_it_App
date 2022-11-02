@@ -16,7 +16,7 @@ export class BookResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookResults = this.libraryService.getBooks();
-    this.libraryService.bookListChanged.subscribe((books) => {
+    this.libraryService.bookListChanged.subscribe((books: Book[]) => {
       this.bookResults = books
     })
   }

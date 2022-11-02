@@ -8,92 +8,106 @@ import { Subject } from "rxjs";
 })
 
 export class BookshelfService {
-  private myBooks: Book[]= [
+  private myBooks: Book[]= []
 
-      new Book(
-        'Book of Testing',
-        'Will Wilder',
-        'https://source.unsplash.com/50x50/?mystery,book',
-        'Mystery'
-      ),
-      new Book(
-        'Children of Time',
-        'Adrian Tchikovski',
-        'https://m.media-amazon.com/images/I/51tuexbxdIL._SL500_.jpg',
-        'SciFi'
-      ),
-      new Book(
-        'Book of Testing',
-        'Will Wilder',
-        'Mystery',
-        'https://source.unsplash.com/50x50/?mystery,book'
-      ),
-      new Book(
-        'Testing Title 2',
-        'Nolan Hovis',
-        'Science',
-        'https://source.unsplash.com/50x50/?science,book'
-      ),
-      new Book(
-        'Fantasy Test',
-        'German Cruz',
-        'Non-Fiction',
-        'https://source.unsplash.com/50x50/?fantasy,book'
-      ),
-      new Book(
-        'Fantasy Test',
-        'Lex Pryor',
-        'Math',
-        'https://source.unsplash.com/50x50/?math,book'
-      ),
-    ]
+  bookSelected = new Subject<Book>();
+  bookListChanged = new Subject<Book[]>();
 
-    bookSelected =  new Subject<Book>();
-    bookListChanged = new Subject<Book[]>();
 
   getBooks() {
           return this.myBooks.slice();
         }
 
-  getBook(idx: number) {
-          return this.getBooks()[idx];
-        }
 
-    saveBook(book: Book) {
-        this.myBooks.push(book)
-        this.bookListChanged.next(this.myBooks.slice())
-    }
 
-    removeBook(idx: number) {
-        if (idx !== -1) {
-
-            this.myBooks.splice(idx, 1)
-            this.bookListChanged.next(this.myBooks.slice());
-        }
-    }
-
+   // Remove a book
+   removeBook(idx: number) {
+    this.myBooks.splice(idx, 1);
+    this.bookListChanged.next(this.getBooks());
+  }
+ // Add a book
     addBook(book: Book) {
       this.myBooks.push(book)
-      this.bookListChanged.next(this.myBooks.slice())
-    }
-
-    updateBook(idx: number, updateBook: Book) {
-      this.myBooks[idx] = updateBook
-      this.bookListChanged.next(this.myBooks.slice())
-    }
-
-    setBooks(books: Book[]) {
-      console.log({books})
-      this.myBooks = books
       this.bookListChanged.next(this.getBooks())
     }
 
+    updateBook(idx: number, newBook: Book) {
+      // Update the object
+      this.myBooks[idx] = newBook;
+      // Broadcast to subscribers of updated array
+      this.bookListChanged.next(this.getBooks());
+    }
+
+    getBook(idx: number) {
+      return this.myBooks.slice()[idx];
+    }
+
+    setBooks(books: Book[] | []) {
+      console.log('%c books: ', 'color: red', books)
+
+      this.myBooks = books || []
+      this.bookListChanged.next(this.myBooks.slice())
+    }
+
+    saveBook(book: Book) {
+      this.myBooks.push(book)
+      this.bookListChanged.next(this.myBooks.slice())
+  }
+
+  // removeBook(idx: number) {
+  //     if (idx !== -1) {
+
+  //         this.myBooks.splice(idx, 1)
+  //         this.bookListChanged.next(this.myBooks.slice());
+  //     }
+  // }
+    constructor(){};
 }
 
 
 
+//     addBook(book: Book) {
+//       this.myBooks.push(book)
+//       this.bookListChanged.next(this.myBooks.slice())
+//     }
+
+//     updateBook(idx: number, updateBook: Book) {
+//       this.myBooks[idx] = updateBook
+//       this.bookListChanged.next(this.myBooks.slice())
+//     }
+
+//     getBook(idx: number) {
+//       return this.getBooks()[idx];
+//     }
+
+//     setBooks(books: Book[]) {
+//       console.log({books})
+//       this.myBooks = books
+//       this.bookListChanged.next(this.getBooks())
+//     }
+
+// }
 
 
+
+
+    // saveBook(book: Book) {
+    //     this.myBooks.push(book)
+    //     this.bookListChanged.next(this.myBooks.slice())
+    // }
+
+// new Book(
+//   'Book of Testing',
+//   'Will Wilder',
+//   'https://source.unsplash.com/50x50/?mystery,book',
+//   'Mystery'
+// ),
+// new Book(
+//   'Children of Time',
+//   'Adrian Tchikovski',
+//   'https://m.media-amazon.com/images/I/51tuexbxdIL._SL500_.jpg',
+//   'SciFi'
+// ),
 
 // @Input() book: Book
 
