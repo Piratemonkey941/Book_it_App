@@ -1,45 +1,31 @@
 <div class="row">
-  <div class="col-xs-12 col-md-6 offest-md-3">
+  <div class="col-xs-12 col-md-6 offset-md-3">
     <form #authFormRef="ngForm" (ngSubmit)="onAuthFormSubmit(authFormRef)">
-      <div class="form-group">
-
         <!-- EMIAL-->
-        <label for="">Email</label>
-        <input
-        type="email"
-        name="email"
-        id="email"
-        class="form-control"
-        email
-        ngModel
-        required
-        >
-      </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ngModel require />
+        </div>
 
       <!-- PASSWORD -->
       <div class="form-group">
-        <label for="">Password</label>
-        <input
-        type="password"
-        name="password"
-        id="password"
-        class="form-control"
-        email
-        ngModel
-        required
-        >
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" class="form-control" minlength="6" ngModel required>
       </div>
 
       <!-- BUTTONS -->
-      <button class="btn btn-primary mr-3" type="submit" [disabled]="!authFormRef.valid">
-        {{ isLoginMode ? "Sign In" : "Sign Up"}}
+      <button class="btn btn-primary" type="submit" [disabled]="!authFormRef.valid">
+        {{ isLoginMode ? "Sign In" : "Sign Up" }}
+      </button>
+      <span class="mx-3">|</span>
+      <button class="btn btn-primary" type="button" (click)="onSwitchAuthMode()">
+        Switch to {{ isLoginMode ? "Sign Up" : "Sign In" }}
       </button>
 
-      <button class="btn btn-primary">
-        Switch to {{ isLoginMode ? "Sign In" : "Sign Up"}}
-      </button>
     </form>
 
-    <p class="alert alert-danger mt-3" *ngIf="errMsg">{{errMsg}}</p>
+    <p class="alert alert-danger mt-3" *ngIf="errMsg.length > 0">
+      {{ errMsg }}
+    </p>
   </div>
 </div>

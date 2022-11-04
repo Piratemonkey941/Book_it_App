@@ -1,4 +1,11 @@
-import { Directive, HostListener, HostBinding, ElementRef, Renderer2 } from '@angular/core';
+import {
+          Directive,
+          HostListener,
+          HostBinding,
+          ElementRef,
+          Renderer2,
+
+        } from '@angular/core';
 
 @Directive({
   selector: '[appDropdown]'
@@ -6,10 +13,13 @@ import { Directive, HostListener, HostBinding, ElementRef, Renderer2 } from '@an
 export class DropdownDirective {
 
   constructor(private elementRef: ElementRef,
-              private renderer: Renderer2) { }
+              private renderer: Renderer2,
+             
+              ) { }
 
     @HostBinding("class.show")
     isOpen = false;
+
 
    @HostListener("click")
    toggleOpen() {

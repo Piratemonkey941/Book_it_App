@@ -36,18 +36,19 @@ export class BookshelfService {
           return this.getBooks()[idx];
         }
 
-    saveBook(book: Book) {
+  saveBook(book: Book) {
         this.myBooks.push(book)
+        this.bookSelected.next(book)
         this.bookListChanged.next(this.myBooks.slice())
-    }
+  }
 
-    removeBook(idx: number) {
-        if (idx !== -1) {
-
+  removeBook(idx: number) {
+        if (idx >= 0) {
+            this.bookSelected.next(this.myBooks[idx])
             this.myBooks.splice(idx, 1)
             this.bookListChanged.next(this.myBooks.slice());
         }
-    }
+  }
 
     // addBook(book: Book) {
     //   this.myBooks.push(book)

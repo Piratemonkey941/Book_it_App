@@ -1,13 +1,25 @@
-<h1>Library</h1>
+
+
 <div class="row">
-  <div class="col-12">
+  <div class="col-6">
+    <h1>API Library Results</h1>
+  </div>
+  <div class="col-6">
     <app-book-search></app-book-search>
   </div>
+</div>
+
+<div>
   <div class="col-12">
     <app-book-results></app-book-results>
   </div>
 </div>
 
+<app-alert
+[alertMsg]="alert"
+*ngIf="alert"
+[closeModal]="handleCloseModal()"
+></app-alert>
 
 
 <!-- <div class="row">
