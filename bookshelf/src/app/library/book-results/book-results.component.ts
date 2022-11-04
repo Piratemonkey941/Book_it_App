@@ -9,10 +9,12 @@ import { LibraryService } from '../library.service';
   styleUrls: ['./book-results.component.css']
 })
 export class BookResultsComponent implements OnInit {
-  bookResults: Book[] = []
+  bookResults: Book[] = [];
 
-  constructor( private bookshelfService: BookshelfService,
-              private libraryService: LibraryService) {}
+  constructor(
+                private libraryService: LibraryService,
+                private bookshelfService: BookshelfService,
+              ) {}
 
   ngOnInit(): void {
     this.bookResults = this.libraryService.getBooks();

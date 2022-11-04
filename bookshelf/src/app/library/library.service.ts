@@ -15,9 +15,13 @@ type BooksResponseObject = Object & {
 export class LibraryService {
 bookListChanged = new EventEmitter<Book[]>();
 
+private allBooks: Book[] = [ ];
+
 constructor(private http: HttpClient) {}
 
-  private allBooks: Book[] = [ ];
+  getBooks() {
+    return this.allBooks.slice();
+  }
 
   fetchBooks(searchQuery: string) {
 
@@ -32,19 +36,13 @@ constructor(private http: HttpClient) {}
     })
   }
 
-
-  getBooks() {
-    return this.allBooks.slice();
-  }
-
-
-  saveBooks(books:BooksResponseObject) {
+ saveBooks(books:BooksResponseObject) {
     this.allBooks = books.docs.map((book) => {
       //transform response data into book model obj as expected
 
       console.log({book})
 
-      const {title, author_name, first_publish_year, isbn} = book
+      const { title, author_name, coverImagePath, genre} = book
 
       const newBook = new Book(
         title,
@@ -52,9 +50,10 @@ constructor(private http: HttpClient) {}
         '',  // image goes here
         '',
         0,
-        first_publish_year,
-        isbn
-
+        genre,
+        coverImagePath,
+        // first_publish_year,
+        // isbn ? isbn[0] : '',
       );
 
       console.log({book})
@@ -64,5 +63,6 @@ constructor(private http: HttpClient) {}
     })
     this.bookListChanged.next(this.getBooks());
   }
+
 
 }

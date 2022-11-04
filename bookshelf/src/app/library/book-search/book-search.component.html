@@ -1,15 +1,14 @@
 <form
 #searchForm="ngForm"
 (ngSubmit)="onFetchBook(searchForm.value.search)"
-
-class="form-inline">
-  <div class="form-group mr-2 mb-3">
-    <label for="search" class="sr-only"></label>
+class="form-inline mb-3" >
+  <div class="form-group mr-2">
+    <label for="search" class="sr-only">Search</label>
     <input
         type="search"
+        class="form-control"
         name="search"
         id="search"
-        class="form-control"
         placeholder="Search"
         [(ngModel)]="searchForm.value.search"
         required

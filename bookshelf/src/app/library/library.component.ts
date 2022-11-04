@@ -9,8 +9,8 @@ import { Book } from '../shared/book/book.model';
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
-  private selectedBookSub: Subscription
-  alert: string
+  alert!: string
+  private selectedBookSub!: Subscription
 
   constructor(public bookshelfService: BookshelfService,) { }
 
@@ -24,12 +24,14 @@ export class LibraryComponent implements OnInit {
     )
   }
 
+  ngOnDestroy(): void {
+    this.selectedBookSub.unsubscribe()
+  }
+  
  handleCloseModal(){
     this.alert = '';
   }
 
-  ngOnDestroy(): void {
-    this.selectedBookSub.unsubscribe()
-  }
+
 
 }

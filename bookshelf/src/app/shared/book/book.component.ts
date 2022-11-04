@@ -10,17 +10,13 @@ import { Book } from './book.model';
 export class BookComponent implements OnInit {
   @Input() idx: number =0;
   @Input() book:Book = new Book('','','','')
-
   @Output() bookSelected = new EventEmitter<void>();
 
-  constructor( private bookshelfService: BookshelfService
 
-  ) { }
+  constructor( private bookshelfService: BookshelfService ) { }
 
   ngOnInit(): void {
   }
-
-i
 
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 import { LibraryService } from '../library.service';
 
 @Component({
@@ -10,15 +11,19 @@ import { LibraryService } from '../library.service';
 export class BookSearchComponent implements OnInit {
 
   constructor(
-    private http: HttpClient,
+    private httpClient: HttpClient,
     private library: LibraryService
     ) { }
 
   ngOnInit(): void {
   }
 
+
     onFetchBook(searchQuery: string){
       this.library.fetchBooks(searchQuery);
+    }
+}
+
     //   console.log("Fetch Books")
     //   console.log({searchQuery})
 
@@ -30,6 +35,3 @@ export class BookSearchComponent implements OnInit {
     //     console.log('Search Response:', searchResponse)
     //   })
     // }
-
-    }
-}

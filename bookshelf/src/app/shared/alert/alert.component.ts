@@ -13,7 +13,7 @@ import {
 })
 export class AlertComponent implements OnInit {
 
-  @Input() alertMsg: string;
+  @Input() alertMsg!: string;
 
   @Output() closeModal = new EventEmitter<void>();
 

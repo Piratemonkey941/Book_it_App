@@ -17,77 +17,56 @@ export class AuthComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSwitchAuthMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
 
-//   onAuthFormSubmit(formObj: NgForm) {
-//     // Validation check
-//     if(!formObj.valid) return;
+  onAuthFormSubmit(form: NgForm) {
 
-//   // Destructure the form input values
-//     const {email, password} = formObj.value
+    console.log('Submit login form...');
+    console.log(form.value);
+    // Validation check
+    if (!form.valid) return;
 
-//     // Conditional to see what mode we are in
-//     if(this.isLoginMode) {
-//       // Sign In Logic
-//       this.authObserve = this.authService.signIn(email, password)
+    this.errMsg = '';
 
-//       }else {
-//         // Sign Up Logic
-//         this.authObserve = this.authService.signUp(email, password)
-//     }
+  // Destructure the form input values
+    const { email, password } = form.value;
 
-//     // Observable logic with error handling
-//     this.authObserve.subscribe(
-//       (res) => {
-//         console.log('Auth Resonse success:', res)
-//         if(this.errMsg) this.errMsg = null
+    // Conditional to see what mode we are in
+    if (this.isLoginMode) {
+      // Sign In Logic
+      this.authObserve = this.auth.login(email, password);
+      } else {
+        // Sign Up Logic
+        this.authObserve = this.auth.signUp(email, password);
+    }
 
-//         this.router.navigate(['bookshelf'])
-//       },
-//       (err) => {
-//         console.log('Auth Resonse Failure:', err)
-//         this.errMsg = err.message
-//       }
-//     )
-// // Reset the form
-//     formObj.reset()
-//   }
-onAuthFormSubmit(form: NgForm) {
-  console.log('Submit login form...');
-  console.log(form.value);
-
-  if (!form.valid) return;
-
-  this.errMsg = '';
-
-  const { email, password } = form.value;
-  if (this.isLoginMode) {
-    this.authObserve = this.auth.signIn(email, password);
-  } else {
-    this.authObserve = this.auth.signUp(email, password);
+    // Observable logic with error handling
+    this.authObserve.subscribe({
+      next: (res) => {
+        console.log('Auth Resonse success:', res)
+      // manually redirect user to bookshelf page
+        this.router.navigate(['bookshelf']);
+      },
+      error: (err) => {
+        console.error('Auth Resonse Failure:', err);
+        this.errMsg = err.message;
+      },
+      });
+// Reset the form
+    form.reset()
   }
 
-  this.authObserve.subscribe({
-    next: (res) => {
-      console.log('Auth Response Success:', res);
-      // manually redirect user to bookshelf page
-      this.router.navigate(['bookshelf']);
-    },
-    error: (err) => {
-      console.error('Auth Response Error:', err);
-      this.errMsg = err.message;
-    },
-  });
+}
 
-  form.reset();
-}
-}
+
+
+
+
 
 
 

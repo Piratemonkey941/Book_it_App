@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'book-it';
 
   ngOnInit(): void {
+    console.log("App Root Init");
     this.authService.automaticSignIn();
   }
 }

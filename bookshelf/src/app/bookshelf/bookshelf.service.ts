@@ -25,9 +25,32 @@ export class BookshelfService {
 
     ]
 
-    bookSelected =  new Subject<Book>();
+    bookSelected = new Subject<Book>();
     bookListChanged = new Subject<Book[]>();
 
+
+  // setBooks(books: Book[] | []) {
+  //     console.log('%c  books: ', 'color: red;', books);
+
+  //     this.myBooks = books || [];
+  //     this.bookListChanged.next(this.myBooks.slice());
+  // }
+
+  //james
+  setBooks(books: Book[]) {
+    console.log({ books });
+    this.myBooks = books;
+    this.bookListChanged.next(this.getBooks());
+  }
+
+   // Create
+   saveBook(book: Book) {
+    this.myBooks.push(book)
+    this.bookSelected.next(book)
+    this.bookListChanged.next(this.myBooks.slice())
+    }
+
+// Read
   getBooks() {
           return this.myBooks.slice();
         }
@@ -36,17 +59,14 @@ export class BookshelfService {
           return this.getBooks()[idx];
         }
 
-  saveBook(book: Book) {
-        this.myBooks.push(book)
-        this.bookSelected.next(book)
-        this.bookListChanged.next(this.myBooks.slice())
-  }
 
+
+  // Delete
   removeBook(idx: number) {
         if (idx >= 0) {
             this.bookSelected.next(this.myBooks[idx])
-            this.myBooks.splice(idx, 1)
-            this.bookListChanged.next(this.myBooks.slice());
+            this.myBooks.splice(idx, 1);
+            this.bookListChanged.next(this.getBooks());
         }
   }
 
@@ -55,7 +75,7 @@ export class BookshelfService {
     //   this.bookListChanged.next(this.myBooks.slice())
     // }
 
-    updateBook(idx: number, updateBook: Book) {
+  updateBook(idx: number, updateBook: Book) {
       this.myBooks[idx] = updateBook
       this.bookListChanged.next(this.myBooks.slice())
     }
@@ -66,12 +86,7 @@ export class BookshelfService {
     //   this.bookListChanged.next(this.getBooks())
     // }
 
-    setBooks(books: Book[] | []) {
-      console.log('%c  books: ', 'color: red;', books);
 
-      this.myBooks = books || [];
-      this.bookListChanged.next(this.myBooks.slice());
-  }
 
 }
 

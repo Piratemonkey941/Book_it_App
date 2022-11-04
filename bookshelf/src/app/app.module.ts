@@ -8,7 +8,7 @@ import { BookListComponent } from './bookshelf/book-list/book-list.component';
 import { BookDetailsComponent } from './bookshelf/book-details/book-details.component';
 import { BookResultsComponent } from './library/book-results/book-results.component';
 import { BookSearchComponent } from './library/book-search/book-search.component';
-import { HeaderComponent } from './header/header.component';
+// import { HeaderComponent } from './header/header.component';
 import { BookComponent } from './shared/book/book.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './shared/auth/auth.component'
 import { AuthInterceptorService } from './shared/auth/authinterceptorservice.service';
 import { AlertComponent } from './shared/alert/alert.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
 
 
 
@@ -37,7 +38,7 @@ import { AlertComponent } from './shared/alert/alert.component';
     BookResultsComponent,
     BookSearchComponent,
     BookComponent,
-    HeaderComponent,
+    // HeaderComponent,
     DropdownDirective,
     BookshelfHomeComponent,
     BookshelfEditorComponent,
@@ -46,6 +47,7 @@ import { AlertComponent } from './shared/alert/alert.component';
     BookFormReactiveComponent,
     AuthComponent,
     AlertComponent,
+    NavigationComponent,
 
 
 

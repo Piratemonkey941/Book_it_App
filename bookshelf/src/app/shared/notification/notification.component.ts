@@ -8,21 +8,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit, OnDestroy {
+  private bookChangeSub: Subscription = new Subscription();
 
-  private bookChangeSub: Subscription = new Subscription;
-
-  constructor(private bookshelfService: BookshelfService) {
-
-   }
+  constructor(
+    private bookshelfService: BookshelfService,
+  ) { }
 
   ngOnInit(): void {
-    this.bookChangeSub = this.bookshelfService.bookSelected.subscribe((data) =>{
-
-      alert(`title: ${data.title}\n author: ${data.author}`)
+    this.bookChangeSub = this.bookshelfService.bookSelected.subscribe((data) => {
+      console.log(data)
+      alert(`title: ${data.title}\nauthor: ${data.author}`)
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.bookChangeSub.unsubscribe();
   }
 

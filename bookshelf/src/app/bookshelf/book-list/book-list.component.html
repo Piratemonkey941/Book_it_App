@@ -1,22 +1,26 @@
 <div class="row mb-3">
-  <div class="col-md-12" *ngFor="let bookElement of myBooks; let i = index">
-    <app-book [book]="bookElement" [idx]="i"></app-book>
+  <div
+    class="col-md-12"
+    *ngFor="let bookEl of myBooks; let i = index"
+  >
+    <app-book [book]="bookEl" [idx]="i" (click)="onBookSelected(i)"></app-book>
+
+    <button class="btn btn-primary" (click)="onNewBook()">Add New Book</button>
+
     <button
       class="float-right"
-      style="border: none; font-size: 16px"
+      style="border: none; font-size: 16px;"
       (click)="onRemoveBook(i)"
-    >
-      &minus;
-    </button>
+    >&minus;</button>
+
   </div>
 </div>
-<hr />
 
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-12">
     <button class="btn btn-primary" (click)="onNewBook()">Add New Book</button>
   </div>
-</div>
+</div> -->
 
 
 

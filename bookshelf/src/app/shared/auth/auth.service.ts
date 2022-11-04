@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { tap } from 'rxjs';
-import { User } from './user.model';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, tap } from 'rxjs';
+import { User } from './user.model';
 import { environment } from 'src/environments/environment';
-
 
 export interface UserData {
   email: string;
@@ -15,14 +13,13 @@ export interface UserData {
 }
 
 export interface AuthResponseData {
-
-          kind: string;
-          idToken: string;
-          email: string;
-          refreshToken: string;
-          expiresIn: string;
-          localId: string;
-          registered?: boolean;
+  kind: string;
+  idToken: string;
+  email: string;
+  refreshToken: string;
+  expiresIn: string;
+  localId: string;
+  registered?: boolean;
 }
 
 @Injectable({
@@ -31,16 +28,14 @@ export interface AuthResponseData {
 
 export class AuthService {
 
-  // const AUTH_API_KEY=
-  //         "AIzaSyA9gsk7xpG0WIT5BwtF__5isqTt3Zho3Lc"
   signUpUrl =
-  `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIkey}`
-  signInUrl =
-  `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIkey}`
+  `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIkey}`;
+  loginUrl =
+  `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIkey}`;
 
-  userToken: string = null
+  userToken: string = '';
   currentUser = new BehaviorSubject<User>(null);
-  private tokenExpTimer: any
+  private tokenExpTimer: any;
 
 
   constructor(
@@ -49,29 +44,47 @@ export class AuthService {
               ) { }
 
   signUp(email: string, password: string) {
-        return this.http
-        .post<AuthResponseData>(this.signUpUrl
-          + environment.firebaseAPIkey, {
-      });
-    }
+    return this.http
+      .post<AuthResponseData>(this.signUpUrl, {
+        email,
+        password,
+        returnSecureToken: true,
+      })
+      .pipe(
+        tap((res) => {
+          const { email, localId, idToken, expiresIn } = res;
+          this.handleAuth(email, localId, idToken, Number(expiresIn));
+        })
+      );
+  }
 
-  signIn(email: string, password: string) {
-        return this.http
-        .post<AuthResponseData>(this.signInUrl  + environment.firebaseAPIkey, {
-      });
-    }
+  login(email: string, password: string) {
+    return this.http
+      .post<AuthResponseData>(this.loginUrl, {
+        email,
+        password,
+        returnSecureToken: true,
+      })
+      .pipe(
+        tap((res) => {
+          const { email, localId, idToken, expiresIn } = res;
+          this.handleAuth(email, localId, idToken, Number(expiresIn));
+        })
+      );
+  }
 
   signOut(){
       this.currentUser.next(null);
+
       localStorage.removeItem(environment.userDataLocalStorage);
       if (this.tokenExpTimer) clearTimeout(this.tokenExpTimer);
+
       this.router.navigate(['auth'])
   }
 
   handleAuth(email: string, userId: string, token: string, expiresIn: number) {
         // Create Expiration Date for Token
-        const expDate = new Date(new Date().getTime()
-         +expiresIn * 1000);
+        const expDate = new Date(new Date().getTime() + expiresIn * 1000);
 
         // Create a new user based on the info passed in the form and emit that user
         const formUser = new User(email, userId, token, expDate);
@@ -107,9 +120,8 @@ export class AuthService {
   }
 
   automaticSignOut(expDuration: number) {
-      console.log("Expiration Duration:", expDuration);
-
-      this.tokenExpTimer = setTimeout(this.signOut, expDuration)
+    console.log("Expiration Duration: ", expDuration);
+    this.tokenExpTimer = setTimeout(this.signOut, expDuration)
   }
 
 

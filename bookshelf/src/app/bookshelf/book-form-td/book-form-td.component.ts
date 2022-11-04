@@ -7,12 +7,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./book-form-td.component.css']
 })
 export class BookFormTdComponent implements OnInit {
-  formHasBeenSubmitted = false;
-
+  hasFormBeenSubmitted = false;
   bookDetails = {
-    title:"",
-    author:"",
-    genre:"",
+    title: "",
+    author: "",
+    genre: "",
   }
 
   constructor() { }
@@ -20,19 +19,17 @@ export class BookFormTdComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onFormSubmit( formObj: NgForm){
-    this.formHasBeenSubmitted = true
-    console.log('Submitted', formObj)
+  onFormSubmit(formObj: NgForm) {
+    console.log("Form submitted!")
     console.log(formObj)
+
+    this.hasFormBeenSubmitted = true
 
     this.bookDetails.title = formObj.value.title
     this.bookDetails.author = formObj.value.author
     this.bookDetails.genre = formObj.value.genre
 
     formObj.reset()
-
- 
-
   }
 
 }
