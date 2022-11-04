@@ -21,7 +21,8 @@ import { BookFormReactiveComponent } from './bookshelf/book-form-reactive/book-f
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './shared/auth/auth.component'
 import { AuthInterceptorService } from './shared/auth/authinterceptorservice.service';
-import { AuthGuard } from './shared/auth/auth-guard/auth-guard.component';
+import { AlertComponent } from './shared/alert/alert.component';
+
 
 
 
@@ -44,7 +45,8 @@ import { AuthGuard } from './shared/auth/auth-guard/auth-guard.component';
     BookFormTdComponent,
     BookFormReactiveComponent,
     AuthComponent,
-    AuthGuard,
+    AlertComponent,
+
 
 
 

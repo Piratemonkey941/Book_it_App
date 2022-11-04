@@ -1,20 +1,17 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
 
-} from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from '../auth.service';
+import {  Injectable } from '@angular/core';
+import {
+          ActivatedRouteSnapshot,
+          CanActivate,
+          Router,
+          RouterStateSnapshot,
+        } from '@angular/router';
+
+import { AuthService } from './auth.service';
 import { map, take } from 'rxjs';
 
-@Component({
-  selector: 'app-auth-guard',
-  templateUrl: './auth-guard.component.html',
-  styleUrls: ['./auth-guard.component.css']
-})
+// import { Observable } from 'rxjs';
+
 
 @Injectable({ providedIn: 'root'})
 
@@ -37,3 +34,4 @@ export class AuthGuard implements CanActivate {
     );
   }
 }
+//private authService: AuthService, private router: Router

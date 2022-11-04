@@ -10,11 +10,11 @@ import { AuthService } from './shared/auth/auth.service';
 export class AppComponent implements OnInit {
 
   constructor( private authService: AuthService){}
-  // pageDisplayed: string = 'bookshelf';
+
   title = 'book-it';
 
-  ngOnInit() {
-    this.authService.automaticSignIn()
+  ngOnInit(): void {
+    this.authService.automaticSignIn();
   }
 }
 
